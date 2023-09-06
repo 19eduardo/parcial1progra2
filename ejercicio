@@ -1,0 +1,64 @@
+Module Module1
+
+    Sub Main()
+        Console.WriteLine("Bienvenido al programa de Datos de Humanos y Animales")
+        Console.WriteLine("---------------------------------------------")
+
+        ' Crear datos de Humanos y Animales
+        Dim paises() As String = {"El Salvador", "Mexico", "España", "Argentina", "Colombia", "Venezuela"}
+        Dim gentilicios() As String = {"salvadoreño", "mexicano", "español", "argentino", "colombiano", "venezolano"}
+        Dim animales() As String = {"Perro", "León", "Tigre", "Oso", "Gato"}
+        Dim especies() As String = {"Canina", "Felina", "Felina", "Ursina", "Felina"}
+
+        ' Mostrar un menú de opciones
+        Console.WriteLine("Seleccione una opción:")
+        Console.WriteLine("1. Humanos")
+        Console.WriteLine("2. Animales")
+        Dim opcion As Integer = Integer.Parse(Console.ReadLine())
+
+        If opcion = 1 Then
+            ' Opción Humanos
+            Console.WriteLine("Ingrese un país: (Escriba la primer letra mayuscula)")
+            Dim pais As String = Console.ReadLine()
+
+            ' Buscar el país ingresado en los datos
+            Dim indice As Integer = Array.IndexOf(paises, pais)
+
+            If indice >= 0 Then
+                Console.WriteLine("El gentilicio de " & pais & " es " & gentilicios(indice))
+            Else
+                Console.WriteLine("El país ingresado no se encuentra en la lista.")
+            End If
+        ElseIf opcion = 2 Then
+            ' Opción Animales
+            Console.WriteLine("Ingrese una especie: (Escriba la primer letra mayuscula)")
+            Dim especie As String = Console.ReadLine()
+
+            ' Buscar los tipos de animales de la especie ingresada
+            Dim tiposAnimales As New List(Of String)
+
+            For i As Integer = 0 To especies.Length - 1
+                If especies(i) = especie Then
+                    tiposAnimales.Add(animales(i))
+                End If
+            Next
+
+            If tiposAnimales.Count > 0 Then
+                Console.WriteLine("Los tipos de animales de la especie " & especie & " son:")
+                For Each tipo As String In tiposAnimales
+                    Console.WriteLine(tipo)
+                Next
+            Else
+                Console.WriteLine("La especie ingresada no se encuentra en la lista.")
+            End If
+        Else
+            Console.WriteLine("Opción no válida. Debe seleccionar (1) Humanos o (2) Animales.")
+        End If
+
+        Console.WriteLine("---------------------------------------------")
+        Console.WriteLine("Ejecución del programa terminada")
+        Console.WriteLine("Desarrollado por Eduardo Antonio Avila Ascencio y Bryan Saul Garcia Carias")
+        Console.ReadLine() ' Esperar a que el usuario presione Enter para salir
+    End Sub
+
+End Module
